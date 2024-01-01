@@ -4,7 +4,7 @@
 from datetime import date
 
 Today = str(date.today())
-NextDate = input ("Timetil is a utility which calculates the time until a certain date for you! Please type in your desired date (use the format yyyy-mm-dd with the -: ")
+NextDate = input("Timetil is a utility which calculates the time until a certain date for you! Please type in your desired date (use the format yyyy-mm-dd with the -: ")
 
 # Split the Today string into individual date objects
 list1 = Today.split("-")
@@ -24,7 +24,7 @@ day1 = int(list2[2].strip())
 
 correct = True
 
-#print(day1,day2,month1,month2)
+# print(day1,day2,month1,month2)
 
 while correct:
     if day2 > 0 & day2 < 32 & day1 > 0 & day1 < 32:
@@ -36,7 +36,7 @@ while correct:
     elif month1 < 0 & month1 > 13:
         correct = False
         print("Please type in a month value which does not exceed 12 and does not got bellow 0")
-        
+
 # dd/mm/yy 24/12/2024
 
 # 1 - 31 days
@@ -70,53 +70,63 @@ ElevDay = 30
 TwelvDay = 31
 
 # year = 2024
-if year1 % 4 == 0 & year1 % 4 == 0:
-    print("Leap year detected")
-    SecDay = 29
-elif year1 % 4 == 0 & year1 % 400 == 0:
-    print("Leap year detected")
-    SecDay = 29
-else:
-    print("The curhowManyMonthsrent year is not a leap year")
-    SecDay = 28
 
-print ("Desired year: ",year1)
-print ("Current year: ",year2)
+# We need to calculate each year length, some years
+# are longer than others (leap years) for that we
+# make a for loop which checks if every year after the
+# one we are in is a leap year, and then stores an
+# additional day which we add onto the day difference
+# (AddDays being the one which adds the day diff)
+# (Year count being the way we check each year)
+
+AddDays = 0
+YearCount = year1
+
+for i in range(year1-year2):
+    if YearCount % 4 == 0 & YearCount % 4 == 0:
+        print("Leap year detected")
+        AddDays += 1
+    elif YearCount % 4 == 0 & YearCount % 400 == 0:
+        print("Leap year detected")
+        AddDays += 1
+    else:
+        print("The curhowManyMonthsrent year is not a leap year")
+    YearCount += 1
+
+print("Desired year: ", year1)
+print("Current year: ", year2)
 
 # calculating the time until said date
 
 # we need to take the difference between the days months and years
 
-# month1 is the current 
-# day1 is the current
-# year1 is the current 
+# month2 is the current
+# day2 is the current
+# year2 is the current
 
-DayDiff = day1-day2
-MonthDiff = month1-month2
-YearDiff = year1-year2
 
-print("Days:",DayDiff,"months:",MonthDiff,"Years:",YearDiff)
 
 # curr day 5
 # desire day 6
-# 11 = 31-5 = 26+6 (count in the desired days plus the days until the next month) = 32
-
-# we do this to get the next month in order to set a value for "month" in the print out, like 3 months until x
+# 11 = 31-5 = 26+6
+# (count in the desired days plus the days until the next month) = 32
+# we do this to get the next month in order to set a value for
+# "month" in the print out, like 3 months until x
 if month1 == 1:
-    NextMonthOver=SecDay
-elif month1 ==2:
-    NextMonthOver=ThirDay
+    NextMonthOver = SecDay
+elif month1 == 2:
+    NextMonthOver = ThirDay
 elif month1 == 3:
-    NextMonthOver=FourDay
+    NextMonthOver = FourDay
 elif month1 == 4:
     NextMonthOver = FiveDay
-elif month1 == 5: 
-    NextMonthOver= SixDay
+elif month1 == 5:
+    NextMonthOver = SixDay
 elif month1 == 6:
-    NextMonthOver= SevenDay
-elif month1 == 7: 
-    NextMonthOver= EightDay
-elif month1 == 8: 
+    NextMonthOver = SevenDay
+elif month1 == 7:
+    NextMonthOver = EightDay
+elif month1 == 8:
     NextMonthOver = NineDay
 elif month1 == 9:
     NextMonthOver = TenDay
@@ -127,16 +137,27 @@ elif month1 == 11:
 elif month1 == 12:
     NextMonthOver = FirDay
 
-print("The next month is" ,NextMonthOver, "days long")
+print("The next month is", NextMonthOver, "days long")
 
-# we need to know which months are in between the two if the months are not the same 
+DayDiff = day1-day2+AddDays
+MonthDiff = month1-month2
+YearDiff = year1-year2
+
+print("Days:", DayDiff, "months:", MonthDiff, "Years:", YearDiff)
+# we need to know which months are in between the
+# two if the months are not the same
+# first we check if the months are the same and if 
+# the years are the same 
 howManyMonths = 0
 
+
+# this is a planned feature to calculate the total days
+# instead of just the months and days
 ListOfMonths = []
-if month1 != month2:
+if month1 != month2 & year2 != year1:
     if MonthDiff < 0:
-        for i in range (MonthDiff*-1):
-            howManyMonths+=1
+        for i in range(MonthDiff*-1):
+            howManyMonths += 1
             print(howManyMonths)
             month1 -= 1
             print(month1)
@@ -150,13 +171,13 @@ if month1 != month2:
                 ListOfMonths.append("FourDay")
             elif month1 == 5 or month1 == -8:
                 ListOfMonths.append("FiveDay")
-            elif month1 == 6 or month1 == -7: 
+            elif month1 == 6 or month1 == -7:
                 ListOfMonths.append("SixDay")
             elif month1 == 7 or month1 == -6:
                 ListOfMonths.append("SevenDay")
-            elif month1 == 8 or month1 == -5: 
+            elif month1 == 8 or month1 == -5:
                 ListOfMonths.append("EightDay")
-            elif month1 == 9 or month1 == -4: 
+            elif month1 == 9 or month1 == -4:
                 ListOfMonths.append("NineDay")
             elif month1 == 10 or month1 == -3:
                 ListOfMonths.append("TenDay")
@@ -166,4 +187,39 @@ if month1 != month2:
                 ListOfMonths.append("TwelvDay")
             elif month1 == 0:
                 ListOfMonths.append("SecDay")
-print(ListOfMonths)   
+elif year1 > year2:
+    print("Desired year is bigger than current")
+    for i in range(MonthDiff*-1):
+        howManyMonths += 1
+        print(howManyMonths)
+        month1 -= 1
+        print(month1)
+        if month1 == 1 or month1 == -12:
+            ListOfMonths.append("FirDay")
+        elif month1 == 2 or month1 == -11:
+            ListOfMonths.append("SecDay")
+        elif month1 == 3 or month1 == -10:
+            ListOfMonths.append("ThirDay")
+        elif month1 == 4 or month1 == -9:
+            ListOfMonths.append("FourDay")
+        elif month1 == 5 or month1 == -8:
+            ListOfMonths.append("FiveDay")
+        elif month1 == 6 or month1 == -7:
+            ListOfMonths.append("SixDay")
+        elif month1 == 7 or month1 == -6:
+            ListOfMonths.append("SevenDay")
+        elif month1 == 8 or month1 == -5:
+            ListOfMonths.append("EightDay")
+        elif month1 == 9 or month1 == -4:
+            ListOfMonths.append("NineDay")
+        elif month1 == 10 or month1 == -3:
+            ListOfMonths.append("TenDay")
+        elif month1 == 11 or month1 == -2:
+            ListOfMonths.append("ElevDay")
+        elif month1 == 12 or month1 == -1:
+            ListOfMonths.append("TwelvDay")
+        elif month1 == 0:
+            ListOfMonths.append("SecDay")
+
+
+print(ListOfMonths)
