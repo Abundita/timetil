@@ -39,3 +39,5 @@ print(f"Days: {DayDiff}, Months: {MonthDiff}, Years: {YearDiff}")
 
 
 # Arch linux rules :!
+# Hyprland 
+# RULEEEEESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
