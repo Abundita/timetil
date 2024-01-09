@@ -38,4 +38,4 @@ print(f"Days: {DayDiff}, Months: {MonthDiff}, Years: {YearDiff}")
 # Hi :) this is Arch linux btw :E 
 
 
-
+# Arch linux rules :!
