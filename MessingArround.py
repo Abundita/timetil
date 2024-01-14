@@ -34,10 +34,3 @@ YearDiff = desired_year-today_year
 
 print("Days:", DayDiff, "months:", MonthDiff, "Years:", YearDiff)
 print(f"Days: {DayDiff}, Months: {MonthDiff}, Years: {YearDiff}")
-
-# Hi :) this is Arch linux btw :E 
-
-
-# Arch linux rules :!
-# Hyprland 
-# RULEEEEESSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
